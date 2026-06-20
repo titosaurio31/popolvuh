@@ -31,7 +31,7 @@
             width: 100vw;
         }
 
-        /* FONDO ANIMADO CON PARTÍCULAS DE MAÍZ */
+        /* PARTÍCULAS DE FONDO */
         .particles-container {
             position: fixed;
             top: 0;
@@ -50,17 +50,17 @@
             background: var(--dorado);
             border-radius: 50%;
             opacity: 0;
-            animation: floatParticle 8s infinite ease-in-out;
+            animation: floatParticle 10s infinite ease-in-out;
         }
 
         @keyframes floatParticle {
             0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
             100% { opacity: 0; transform: translateY(-10vh) rotate(720deg); }
         }
 
-        /* PATTERN DE FONDO MAYA */
+        /* PATTERN DE FONDO */
         .bg-pattern {
             position: fixed;
             top: 0;
@@ -195,7 +195,6 @@
             justify-content: center;
         }
 
-        /* Bordes decorativos con brillo animado */
         .slide::before {
             content: '';
             position: absolute;
@@ -267,7 +266,6 @@
         .corner-br::before { width: 30px; height: 2px; bottom: 0; right: 0; }
         .corner-br::after { width: 2px; height: 30px; bottom: 0; right: 0; }
 
-        /* TITULOS */
         h1 {
             font-family: 'Cinzel Decorative', cursive;
             font-size: 2.6rem;
@@ -416,7 +414,6 @@
             letter-spacing: 1px;
             border: 1px solid var(--tierra);
             line-height: 1.3;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
@@ -537,7 +534,6 @@
             font-size: 0.65rem;
         }
 
-        /* CONTROLES MEJORADOS */
         .controls {
             position: fixed;
             bottom: 20px;
@@ -606,16 +602,16 @@
             display: none;
         }
 
-        /* RELOJ MAYA */
+        /* RELOJ MAYA - VISIBLE Y FUNCIONAL */
         .maya-clock {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 15px;
+            right: 15px;
             z-index: 100;
-            background: rgba(10, 6, 4, 0.85);
-            border: 1px solid var(--tierra);
+            background: rgba(10, 6, 4, 0.9);
+            border: 2px solid var(--tierra);
             border-radius: 8px;
-            padding: 10px 15px;
+            padding: 12px 18px;
             text-align: center;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -623,20 +619,28 @@
 
         .maya-clock:hover {
             border-color: var(--dorado);
-            box-shadow: 0 0 15px rgba(212, 168, 67, 0.2);
+            box-shadow: 0 0 15px rgba(212, 168, 67, 0.3);
+            transform: scale(1.05);
         }
 
         .maya-clock .clock-time {
             font-family: 'Cinzel Decorative', cursive;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--dorado);
             letter-spacing: 2px;
         }
 
         .maya-clock .clock-date {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: var(--ocre);
+            margin-top: 4px;
+        }
+
+        .maya-clock .clock-label {
+            font-size: 0.65rem;
+            color: var(--tierra);
             margin-top: 2px;
+            letter-spacing: 1px;
         }
 
         .progress-bar {
@@ -687,55 +691,6 @@
             letter-spacing: 2px;
         }
 
-        /* EFECTO DE ESCRITURA */
-        .typewriter {
-            overflow: hidden;
-            border-right: 2px solid var(--dorado);
-            white-space: nowrap;
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
-            display: inline-block;
-        }
-
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--dorado); }
-        }
-
-        /* TOOLTIP */
-        .tooltip {
-            position: relative;
-        }
-
-        .tooltip::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(10, 6, 4, 0.95);
-            color: var(--dorado);
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            border: 1px solid var(--tierra);
-            z-index: 200;
-        }
-
-        .tooltip:hover::after {
-            opacity: 1;
-            bottom: calc(100% + 8px);
-        }
-
-        /* ANIMACIONES */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -751,11 +706,6 @@
         .delay-4 { animation-delay: 0.6s; }
         .delay-5 { animation-delay: 0.75s; }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
         @keyframes rotateIn {
             from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
             to { opacity: 1; transform: rotate(0) scale(1); }
@@ -767,7 +717,7 @@
 
         @media (max-width: 1200px) {
             .slide { flex-direction: column; height: 88vh; }
-            .image-panel { width: 100%; height: 35%; min-width: auto; padding: 10px; }
+            .image-panel { width: 100%; height: 30%; min-width: auto; padding: 10px; }
             .content-panel { padding: 20px; }
             h1 { font-size: 1.8rem; }
             h2 { font-size: 1.2rem; }
@@ -794,9 +744,10 @@
     <div class="progress-bar" id="progressBar"></div>
 
     <!-- RELOJ MAYA -->
-    <div class="maya-clock tooltip" id="mayaClock" data-tooltip="Hora actual - Clic para pausar/reanudar">
+    <div class="maya-clock" id="mayaClock">
         <div class="clock-time" id="clockTime">00:00:00</div>
         <div class="clock-date" id="clockDate">--/--/----</div>
+        <div class="clock-label">Clic para pausar</div>
     </div>
 
     <div class="presentation">
@@ -807,7 +758,7 @@
             <div class="corner-decor corner-bl"></div>
             <div class="corner-decor corner-br"></div>
             <div class="content-panel">
-                <div class="maya-icon animate-in tooltip" data-tooltip="¡Haz clic para animar!" onclick="animateIcon(this)">🌽</div>
+                <div class="maya-icon animate-in" onclick="animateIcon(this)">🌽</div>
                 <h1 class="animate-in">POPOL VUH</h1>
                 <div class="title-decoration animate-in delay-1">
                     <span>◆ ◆ ◆</span>
@@ -841,19 +792,19 @@
                     El <strong>Popol Vuh</strong> es el texto sagrado más importante de la civilización maya. Redactado en el siglo XVI por nobles K'iche'.
                 </p>
                 <ul class="content-list animate-in delay-2">
-                    <li data-tooltip="Significado en lengua K'iche'"><strong>Significado:</strong> "Popol" = Consejo | "Vuh" = Libro</li>
-                    <li data-tooltip="Idioma original del texto"><strong>Escrito en:</strong> Lengua K'iche' (maya-quiché)</li>
-                    <li data-tooltip="Período de redacción"><strong>Fecha:</strong> Circa 1550 d.C.</li>
-                    <li data-tooltip="Material utilizado"><strong>Material:</strong> Papel de corteza de amate</li>
-                    <li data-tooltip="Traductor al español"><strong>Traductor:</strong> Fray Francisco Ximénez</li>
-                    <li data-tooltip="Estructura narrativa"><strong>Estructura:</strong> Creación, héroes, historia K'iche'</li>
+                    <li><strong>Significado:</strong> "Popol" = Consejo | "Vuh" = Libro</li>
+                    <li><strong>Escrito en:</strong> Lengua K'iche' (maya-quiché)</li>
+                    <li><strong>Fecha:</strong> Circa 1550 d.C.</li>
+                    <li><strong>Material:</strong> Papel de corteza de amate</li>
+                    <li><strong>Traductor:</strong> Fray Francisco Ximénez</li>
+                    <li><strong>Estructura:</strong> Creación, héroes, historia K'iche'</li>
                 </ul>
-                <div class="quote animate-in delay-3 tooltip" data-tooltip="Clic para copiar al portapapeles" onclick="copyQuote(this)">
+                <div class="quote animate-in delay-3" onclick="copyQuote(this)">
                     Uno de los pocos textos precolombinos que sobrevivieron a la destrucción española.
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/arqueologiamexicana.mx/ef50013890fd2510df4464070609b51fa2586db4.png" alt="Cerámica Maya Clásica" class="tooltip" data-tooltip="Clic para ampliar">
+                <img src="https://kimi-web-img.moonshot.cn/img/arqueologiamexicana.mx/ef50013890fd2510df4464070609b51fa2586db4.png" alt="Cerámica Maya Clásica">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Cerámica policroma maya clásica</div>
             </div>
@@ -897,12 +848,12 @@
                         <td><strong>Hombres perfectos ✅</strong></td>
                     </tr>
                 </table>
-                <div class="quote animate-in delay-3 tooltip" data-tooltip="Clic para copiar" onclick="copyQuote(this)">
+                <div class="quote animate-in delay-3" onclick="copyQuote(this)">
                     "Solo masa de maíz fueron sus cuerpos."
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/arqueologiamexicana.mx/afeeb36a21c6883a51574a37f47d1e441642999b.jpg" alt="Arte del Popol Vuh" class="tooltip" data-tooltip="Clic para ampliar">
+                <img src="https://kimi-web-img.moonshot.cn/img/arqueologiamexicana.mx/afeeb36a21c6883a51574a37f47d1e441642999b.jpg" alt="Arte del Popol Vuh">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Dioses de la creación maya</div>
             </div>
@@ -920,26 +871,26 @@
                     <span>◆ ◆ ◆</span>
                 </div>
                 <div class="characters-grid">
-                    <div class="character-card animate-in tooltip" data-tooltip="Dios creador supremo" onclick="highlightCard(this)">
+                    <div class="character-card animate-in" onclick="highlightCard(this)">
                         <h4>🌟 Tepeu</h4>
                         <p>El Arquitecto. Dios creador supremo del universo.</p>
                     </div>
-                    <div class="character-card animate-in delay-1 tooltip" data-tooltip="Fuerza creadora" onclick="highlightCard(this)">
+                    <div class="character-card animate-in delay-1" onclick="highlightCard(this)">
                         <h4>🐍 Gucumatz</h4>
                         <p>La Serpiente Emplumada, fuerza creadora.</p>
                     </div>
-                    <div class="character-card animate-in delay-2 tooltip" data-tooltip="Guardianes del saber" onclick="highlightCard(this)">
+                    <div class="character-card animate-in delay-2" onclick="highlightCard(this)">
                         <h4>👴👵 Xpiyakok e Ixmukane</h4>
                         <p>Los Abuelos Sabios, guardianes del conocimiento.</p>
                     </div>
-                    <div class="character-card animate-in delay-3 tooltip" data-tooltip="Héroes del Popol Vuh" onclick="highlightCard(this)">
+                    <div class="character-card animate-in delay-3" onclick="highlightCard(this)">
                         <h4>⚔️ Hunahpú e Ixbalanqué</h4>
                         <p>Los Héroes Gemelos, vencedores del inframundo.</p>
                     </div>
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/af2be74a0f3279460d2981d4bedc639b660b02fa.jpg" alt="Jarrón Maya Hunahpú e Ixbalanqué" class="tooltip" data-tooltip="Clic para ampliar">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/af2be74a0f3279460d2981d4bedc639b660b02fa.jpg" alt="Jarrón Maya Hunahpú e Ixbalanqué">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Jarrón maya — Hunahpú e Ixbalanqué</div>
             </div>
@@ -958,15 +909,15 @@
                 </div>
                 <h3 class="animate-in delay-1">Junajpú e Ixb'alamke</h3>
                 <ul class="content-list animate-in delay-2">
-                    <li data-tooltip="Nacimiento milagroso"><strong>Nacimiento:</strong> Ixkik' queda embarazada al hablar con la cabeza de Jun Junajpú</li>
-                    <li data-tooltip="Crianza"><strong>Infancia:</strong> Criados por su abuela Ixmukane</li>
-                    <li data-tooltip="Hazañas"><strong>Hazañas:</strong> Derrotan a Vucub Caquix, Zipacná y Cabracán</li>
-                    <li data-tooltip="Descenso al inframundo"><strong>Xibalbá:</strong> Sobreviven pruebas mortales</li>
-                    <li data-tooltip="Ascensión divina"><strong>Destino:</strong> ¡Ascienden como el Sol y la Luna!</li>
+                    <li><strong>Nacimiento:</strong> Ixkik' queda embarazada al hablar con la cabeza de Jun Junajpú</li>
+                    <li><strong>Infancia:</strong> Criados por su abuela Ixmukane</li>
+                    <li><strong>Hazañas:</strong> Derrotan a Vucub Caquix, Zipacná y Cabracán</li>
+                    <li><strong>Xibalbá:</strong> Sobreviven pruebas mortales</li>
+                    <li><strong>Destino:</strong> ¡Ascienden como el Sol y la Luna!</li>
                 </ul>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/3e9b9d50a1af221a19aec0f75711e06906aed9d9.jpg" alt="Hunahpú - Dios Maya" class="tooltip" data-tooltip="Clic para ampliar">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/3e9b9d50a1af221a19aec0f75711e06906aed9d9.jpg" alt="Hunahpú - Dios Maya">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Representación de Hunahpú</div>
             </div>
@@ -989,37 +940,37 @@
                 </p>
                 <h3 class="animate-in delay-2">Las Seis Casas</h3>
                 <div class="characters-grid animate-in delay-3">
-                    <div class="character-card tooltip" data-tooltip="Sin luz ni guía" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>🏠 Oscuridad</h4>
                         <p>Sin luz ni guía.</p>
                     </div>
-                    <div class="character-card tooltip" data-tooltip="Cuchillos giratorios" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>🔪 Cuchillos</h4>
                         <p>Hojas giratorias.</p>
                     </div>
-                    <div class="character-card tooltip" data-tooltip="Viento gélido" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>❄️ Frío</h4>
                         <p>Viento gélido.</p>
                     </div>
-                    <div class="character-card tooltip" data-tooltip="Fieras hambrientas" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>🐆 Jaguares</h4>
                         <p>Fieras hambrientas.</p>
                     </div>
-                    <div class="character-card tooltip" data-tooltip="Llamas eternas" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>🔥 Fuego</h4>
                         <p>Llamas eternas.</p>
                     </div>
-                    <div class="character-card tooltip" data-tooltip="Criaturas nocturnas" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>🦇 Murciélagos</h4>
                         <p>Criaturas nocturnas.</p>
                     </div>
                 </div>
-                <div class="quote animate-in delay-4 tooltip" data-tooltip="Clic para copiar" onclick="copyQuote(this)" style="font-size: 0.82rem;">
+                <div class="quote animate-in delay-4" onclick="copyQuote(this)" style="font-size: 0.82rem;">
                     Xibalbá representa los obstáculos internos: miedo, orgullo, ignorancia.
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/2114141.fs1.hubspotusercontent-na1.net/88b811ffcfa36307139ff0bbe372da2d31210d65.jpg" alt="Mural Maya Xibalbá" class="tooltip" data-tooltip="Clic para ampliar">
+                <img src="https://kimi-web-img.moonshot.cn/img/2114141.fs1.hubspotusercontent-na1.net/88b811ffcfa36307139ff0bbe372da2d31210d65.jpg" alt="Mural Maya Xibalbá">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Mural maya — Escenas del inframundo</div>
             </div>
@@ -1038,24 +989,24 @@
                 </div>
                 <h3 class="animate-in delay-1">Los Cuatro Primeros Hombres</h3>
                 <div class="characters-grid animate-in delay-2">
-                    <div class="character-card tooltip" data-tooltip="Jaguar de la Lluvia" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>🐆 Balam Quitzé</h4>
                         <p>Jaguar de la Lluvia</p>
                     </div>
-                    <div class="character-card tooltip" data-tooltip="Jaguar de la Noche" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>🌙 Balam Ak'ab</h4>
                         <p>Jaguar de la Noche</p>
                     </div>
-                    <div class="character-card tooltip" data-tooltip="No se pierde" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>💎 Mahucutah</h4>
                         <p>No se pierde</p>
                     </div>
-                    <div class="character-card tooltip" data-tooltip="Jaguar de la Luna" onclick="highlightCard(this)">
+                    <div class="character-card" onclick="highlightCard(this)">
                         <h4>⭐ Iqui Balam</h4>
                         <p>Jaguar de la Luna</p>
                     </div>
                 </div>
-                <div class="quote animate-in delay-3 tooltip" data-tooltip="Clic para copiar" onclick="copyQuote(this)">
+                <div class="quote animate-in delay-3" onclick="copyQuote(this)">
                     "De maíz amarillo y blanco fue hecha su carne."
                 </div>
                 <p class="animate-in delay-4" style="margin-top: 8px; font-size: 0.8rem; color: var(--ocre); text-align: left; width: 100%;">
@@ -1063,7 +1014,7 @@
                 </p>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/137degrees.com/96b12942f7402b3975dce941625e754cd6bf0da9.jpg" alt="Cerámica Maya Antigua" class="tooltip" data-tooltip="Clic para ampliar">
+                <img src="https://kimi-web-img.moonshot.cn/img/137degrees.com/96b12942f7402b3975dce941625e754cd6bf0da9.jpg" alt="Cerámica Maya Antigua">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Plato ceremonial maya</div>
             </div>
@@ -1081,27 +1032,27 @@
                     <span>◆ ◆ ◆</span>
                 </div>
                 <div class="two-columns animate-in delay-2">
-                    <div class="column-section tooltip" data-tooltip="Origen del mundo" onclick="highlightSection(this)">
+                    <div class="column-section" onclick="highlightSection(this)">
                         <h4>🌌 Creación</h4>
                         <p>Origen del mundo y del ser humano desde el silencio primordial.</p>
                     </div>
-                    <div class="column-section tooltip" data-tooltip="Astucia contra fuerza" onclick="highlightSection(this)">
+                    <div class="column-section" onclick="highlightSection(this)">
                         <h4>⚔️ Heroísmo</h4>
                         <p>Lucha del bien contra el mal, astucia contra soberbia.</p>
                     </div>
-                    <div class="column-section tooltip" data-tooltip="Balance cósmico" onclick="highlightSection(this)">
+                    <div class="column-section" onclick="highlightSection(this)">
                         <h4>🔄 Dualidad</h4>
                         <p>Vida/muerte, luz/oscuridad, cielo/inframundo.</p>
                     </div>
-                    <div class="column-section tooltip" data-tooltip="Sustento sagrado" onclick="highlightSection(this)">
+                    <div class="column-section" onclick="highlightSection(this)">
                         <h4>🌽 Maíz</h4>
                         <p>Sustento sagrado y origen divino de la humanidad.</p>
                     </div>
-                    <div class="column-section tooltip" data-tooltip="Sabiduría ancestral" onclick="highlightSection(this)">
+                    <div class="column-section" onclick="highlightSection(this)">
                         <h4>📚 Conocimiento</h4>
                         <p>Transmisión de la sabiduría ancestral.</p>
                     </div>
-                    <div class="column-section tooltip" data-tooltip="Ciclos cósmicos" onclick="highlightSection(this)">
+                    <div class="column-section" onclick="highlightSection(this)">
                         <h4>🌅 Astronomía</h4>
                         <p>Ciclos del sol, la luna y Venus — tiempo cíclico.</p>
                     </div>
@@ -1121,19 +1072,19 @@
                     <span>◆ ◆ ◆</span>
                 </div>
                 <ul class="content-list animate-in delay-1">
-                    <li data-tooltip="Valor literario"><strong>Literatura:</strong> La obra más importante de la literatura indígena americana</li>
-                    <li data-tooltip="Valor histórico"><strong>Historia:</strong> Documenta la genealogía de los gobernantes K'iche'</li>
-                    <li data-tooltip="Visión del tiempo"><strong>Cosmovisión:</strong> Visión cíclica del tiempo (no lineal)</li>
-                    <li data-tooltip="Evidencia arqueológica"><strong>Arqueología:</strong> Escenas en cerámica y murales mayas</li>
-                    <li data-tooltip="Vigencia actual"><strong>Cultura viva:</strong> Referente para los pueblos mayas contemporáneos</li>
-                    <li data-tooltip="Inspiración artística"><strong>Arte:</strong> Ha inspirado literatura, pintura, música y cine</li>
+                    <li><strong>Literatura:</strong> La obra más importante de la literatura indígena americana</li>
+                    <li><strong>Historia:</strong> Documenta la genealogía de los gobernantes K'iche'</li>
+                    <li><strong>Cosmovisión:</strong> Visión cíclica del tiempo (no lineal)</li>
+                    <li><strong>Arqueología:</strong> Escenas en cerámica y murales mayas</li>
+                    <li><strong>Cultura viva:</strong> Referente para los pueblos mayas contemporáneos</li>
+                    <li><strong>Arte:</strong> Ha inspirado literatura, pintura, música y cine</li>
                 </ul>
-                <div class="quote animate-in delay-2 tooltip" data-tooltip="Clic para copiar" onclick="copyQuote(this)">
+                <div class="quote animate-in delay-2" onclick="copyQuote(this)">
                     "Todo lo que existe, todo lo que fue creado, todo lo que fue formado..."
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/cdnx.jumpseller.com/a6c02120971bfeb65837a32bdde126c8f29db68c.jpg" alt="Portada Popol Vuh" class="tooltip" data-tooltip="Clic para ampliar">
+                <img src="https://kimi-web-img.moonshot.cn/img/cdnx.jumpseller.com/a6c02120971bfeb65837a32bdde126c8f29db68c.jpg" alt="Portada Popol Vuh">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Edición moderna del Popol Vuh</div>
             </div>
@@ -1146,7 +1097,7 @@
             <div class="corner-decor corner-bl"></div>
             <div class="corner-decor corner-br"></div>
             <div class="content-panel">
-                <div class="maya-icon animate-in tooltip" data-tooltip="¡Haz clic para animar!" onclick="animateIcon(this)">🌽</div>
+                <div class="maya-icon animate-in" onclick="animateIcon(this)">🌽</div>
                 <h1 class="animate-in delay-1" style="font-size: 2.2rem;">Gracias</h1>
                 <div class="title-decoration animate-in delay-2">
                     <span>◆ ◆ ◆</span>
@@ -1164,8 +1115,8 @@
     </div>
 
     <div class="controls">
-        <button class="btn tooltip" id="prevBtn" data-tooltip="Flecha izquierda" onclick="changeSlide(-1)">◀ Anterior</button>
-        <button class="btn tooltip" id="nextBtn" data-tooltip="Flecha derecha / Espacio" onclick="changeSlide(1)">Siguiente ▶</button>
+        <button class="btn" id="prevBtn" onclick="changeSlide(-1)">◀ Anterior</button>
+        <button class="btn" id="nextBtn" onclick="changeSlide(1)">Siguiente ▶</button>
     </div>
 
     <div class="slide-counter" id="slideCounter">1 / 10</div>
@@ -1173,20 +1124,21 @@
     <script>
         let currentSlide = 0;
         const totalSlides = 10;
-        let clockInterval;
         let clockRunning = true;
 
         // CREAR PARTÍCULAS DE FONDO
         function createParticles() {
             const container = document.getElementById('particlesContainer');
-            for (let i = 0; i < 30; i++) {
+            container.innerHTML = '';
+            for (let i = 0; i < 25; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 8 + 's';
-                particle.style.animationDuration = (6 + Math.random() * 6) + 's';
-                particle.style.width = (2 + Math.random() * 4) + 'px';
-                particle.style.height = particle.style.width;
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                particle.style.animationDuration = (8 + Math.random() * 6) + 's';
+                const size = 2 + Math.random() * 4;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
                 container.appendChild(particle);
             }
         }
@@ -1197,14 +1149,20 @@
             const now = new Date();
             const timeStr = now.toLocaleTimeString('es-ES', { hour12: false });
             const dateStr = now.toLocaleDateString('es-ES');
-            document.getElementById('clockTime').textContent = timeStr;
-            document.getElementById('clockDate').textContent = dateStr;
+            const timeEl = document.getElementById('clockTime');
+            const dateEl = document.getElementById('clockDate');
+            if (timeEl) timeEl.textContent = timeStr;
+            if (dateEl) dateEl.textContent = dateStr;
         }
 
         function toggleClock() {
             clockRunning = !clockRunning;
             const clock = document.getElementById('mayaClock');
-            clock.style.opacity = clockRunning ? '1' : '0.5';
+            if (clock) {
+                clock.style.opacity = clockRunning ? '1' : '0.5';
+                const label = clock.querySelector('.clock-label');
+                if (label) label.textContent = clockRunning ? 'Clic para pausar' : 'Clic para reanudar';
+            }
         }
 
         // ANIMAR ICONO DE MAÍZ
@@ -1250,6 +1208,15 @@
                     quote.textContent = original;
                     quote.style.color = '';
                 }, 1500);
+            }).catch(() => {
+                // Fallback para navegadores que no soportan clipboard API
+                const original = quote.textContent;
+                quote.textContent = '✓ ¡Copiado!';
+                quote.style.color = 'var(--dorado)';
+                setTimeout(() => {
+                    quote.textContent = original;
+                    quote.style.color = '';
+                }, 1500);
             });
         }
 
@@ -1257,19 +1224,29 @@
         function updateSlide() {
             for (let i = 0; i < totalSlides; i++) {
                 const slide = document.getElementById('slide-' + i);
-                slide.classList.remove('active', 'prev');
-                if (i < currentSlide) {
-                    slide.classList.add('prev');
+                if (slide) {
+                    slide.classList.remove('active', 'prev');
+                    if (i < currentSlide) {
+                        slide.classList.add('prev');
+                    }
                 }
             }
-            document.getElementById('slide-' + currentSlide).classList.add('active');
+            const activeSlide = document.getElementById('slide-' + currentSlide);
+            if (activeSlide) activeSlide.classList.add('active');
 
-            document.getElementById('prevBtn').disabled = currentSlide === 0;
-            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            if (prevBtn) prevBtn.disabled = currentSlide === 0;
+            if (nextBtn) nextBtn.disabled = currentSlide === totalSlides - 1;
 
-            const progress = ((currentSlide + 1) / totalSlides) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-            document.getElementById('slideCounter').textContent = (currentSlide + 1) + ' / ' + totalSlides;
+            const progressBar = document.getElementById('progressBar');
+            if (progressBar) {
+                const progress = ((currentSlide + 1) / totalSlides) * 100;
+                progressBar.style.width = progress + '%';
+            }
+
+            const slideCounter = document.getElementById('slideCounter');
+            if (slideCounter) slideCounter.textContent = (currentSlide + 1) + ' / ' + totalSlides;
         }
 
         function changeSlide(direction) {
@@ -1301,9 +1278,14 @@
 
         // INICIALIZAR
         createParticles();
-        clockInterval = setInterval(updateClock, 1000);
+        setInterval(updateClock, 1000);
         updateClock();
-        document.getElementById('mayaClock').addEventListener('click', toggleClock);
+
+        const mayaClock = document.getElementById('mayaClock');
+        if (mayaClock) {
+            mayaClock.addEventListener('click', toggleClock);
+        }
+
         updateSlide();
     </script>
 </body>
