@@ -31,6 +31,36 @@
             width: 100vw;
         }
 
+        /* FONDO ANIMADO CON PARTÍCULAS DE MAÍZ */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--dorado);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatParticle 8s infinite ease-in-out;
+        }
+
+        @keyframes floatParticle {
+            0% { opacity: 0; transform: translateY(100vh) rotate(0deg); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(-10vh) rotate(720deg); }
+        }
+
+        /* PATTERN DE FONDO MAYA */
         .bg-pattern {
             position: fixed;
             top: 0;
@@ -85,7 +115,6 @@
             opacity: 0;
         }
 
-        /* Panel de contenido */
         .content-panel {
             flex: 1;
             padding: 30px 40px;
@@ -96,7 +125,6 @@
             overflow: hidden;
         }
 
-        /* Panel de imagen - CORREGIDO PARA QUE SE VEA COMPLETA */
         .image-panel {
             width: 45%;
             min-width: 400px;
@@ -116,9 +144,15 @@
             height: auto;
             object-fit: contain;
             opacity: 0.95;
-            transition: transform 0.8s ease;
+            transition: transform 0.8s ease, filter 0.5s ease;
             border-radius: 4px;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+
+        .image-panel img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1) contrast(1.1);
         }
 
         .slide.active .image-panel img {
@@ -151,7 +185,6 @@
             border-radius: 3px;
         }
 
-        /* Full content slides */
         .slide.full-content .content-panel {
             width: 100%;
             max-width: 900px;
@@ -162,7 +195,7 @@
             justify-content: center;
         }
 
-        /* Bordes decorativos */
+        /* Bordes decorativos con brillo animado */
         .slide::before {
             content: '';
             position: absolute;
@@ -175,6 +208,12 @@
             pointer-events: none;
             z-index: 10;
             opacity: 0.4;
+            animation: borderGlow 4s infinite ease-in-out;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.3; border-color: var(--tierra); }
+            50% { opacity: 0.6; border-color: var(--dorado); }
         }
 
         .slide::after {
@@ -196,7 +235,13 @@
             width: 50px;
             height: 50px;
             z-index: 15;
-            opacity: 0.5;
+            opacity: 0.6;
+            animation: cornerPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes cornerPulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
         }
 
         .corner-decor::before,
@@ -305,6 +350,14 @@
             background: rgba(196, 149, 106, 0.05);
             border-radius: 0 6px 6px 0;
             line-height: 1.5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quote:hover {
+            background: rgba(212, 168, 67, 0.1);
+            border-left-color: var(--dorado);
+            transform: translateX(5px);
         }
 
         .content-list {
@@ -321,6 +374,14 @@
             font-size: 0.82rem;
             line-height: 1.45;
             margin-bottom: 3px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .content-list li:hover {
+            background: rgba(212, 168, 67, 0.08);
+            padding-left: 28px;
         }
 
         .content-list li::before {
@@ -330,6 +391,12 @@
             color: var(--dorado);
             font-size: 0.65rem;
             top: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .content-list li:hover::before {
+            transform: scale(1.5);
+            color: var(--dorado);
         }
 
         .maya-table {
@@ -349,6 +416,12 @@
             letter-spacing: 1px;
             border: 1px solid var(--tierra);
             line-height: 1.3;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .maya-table th:hover {
+            background: linear-gradient(180deg, #a03000, var(--rojo-maya));
         }
 
         .maya-table td {
@@ -356,6 +429,13 @@
             border: 1px solid rgba(196, 149, 106, 0.2);
             text-align: left;
             line-height: 1.35;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .maya-table tr:hover td {
+            background: rgba(212, 168, 67, 0.08);
+            color: var(--dorado);
         }
 
         .maya-table tr:nth-child(even) {
@@ -377,12 +457,15 @@
             border-radius: 4px;
             padding: 8px 10px;
             text-align: left;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            cursor: pointer;
         }
 
         .character-card:hover {
-            background: rgba(212, 168, 67, 0.12);
+            background: rgba(212, 168, 67, 0.15);
             border-color: var(--dorado);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(212, 168, 67, 0.15);
         }
 
         .character-card h4 {
@@ -410,6 +493,15 @@
 
         .column-section {
             text-align: left;
+            transition: all 0.3s ease;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .column-section:hover {
+            background: rgba(212, 168, 67, 0.08);
+            transform: translateX(5px);
         }
 
         .column-section h4 {
@@ -445,6 +537,7 @@
             font-size: 0.65rem;
         }
 
+        /* CONTROLES MEJORADOS */
         .controls {
             position: fixed;
             bottom: 20px;
@@ -454,9 +547,15 @@
             gap: 10px;
             z-index: 100;
             background: rgba(10, 6, 4, 0.85);
-            padding: 8px 20px;
+            padding: 10px 20px;
             border-radius: 8px;
             border: 1px solid var(--tierra);
+            transition: all 0.3s ease;
+        }
+
+        .controls:hover {
+            border-color: var(--dorado);
+            box-shadow: 0 0 20px rgba(212, 168, 67, 0.2);
         }
 
         .btn {
@@ -470,18 +569,74 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 168, 67, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
             background: var(--rojo-maya);
             border-color: var(--dorado);
-            box-shadow: 0 0 10px rgba(212, 168, 67, 0.3);
+            box-shadow: 0 0 15px rgba(212, 168, 67, 0.3);
+            transform: translateY(-2px);
         }
 
         .btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
             border-color: #444;
+            transform: none;
+        }
+
+        .btn:disabled::before {
+            display: none;
+        }
+
+        /* RELOJ MAYA */
+        .maya-clock {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(10, 6, 4, 0.85);
+            border: 1px solid var(--tierra);
+            border-radius: 8px;
+            padding: 10px 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .maya-clock:hover {
+            border-color: var(--dorado);
+            box-shadow: 0 0 15px rgba(212, 168, 67, 0.2);
+        }
+
+        .maya-clock .clock-time {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.1rem;
+            color: var(--dorado);
+            letter-spacing: 2px;
+        }
+
+        .maya-clock .clock-date {
+            font-size: 0.7rem;
+            color: var(--ocre);
+            margin-top: 2px;
         }
 
         .progress-bar {
@@ -503,6 +658,10 @@
             font-size: 0.85rem;
             z-index: 100;
             letter-spacing: 2px;
+            background: rgba(10, 6, 4, 0.7);
+            padding: 5px 12px;
+            border-radius: 4px;
+            border: 1px solid var(--tierra);
         }
 
         .maya-icon {
@@ -510,6 +669,14 @@
             margin: 8px 0;
             color: var(--dorado);
             opacity: 0.9;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            display: inline-block;
+        }
+
+        .maya-icon:hover {
+            transform: rotate(15deg) scale(1.2);
+            filter: drop-shadow(0 0 10px var(--dorado));
         }
 
         .subtitle {
@@ -520,6 +687,55 @@
             letter-spacing: 2px;
         }
 
+        /* EFECTO DE ESCRITURA */
+        .typewriter {
+            overflow: hidden;
+            border-right: 2px solid var(--dorado);
+            white-space: nowrap;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+            display: inline-block;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--dorado); }
+        }
+
+        /* TOOLTIP */
+        .tooltip {
+            position: relative;
+        }
+
+        .tooltip::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(10, 6, 4, 0.95);
+            color: var(--dorado);
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            border: 1px solid var(--tierra);
+            z-index: 200;
+        }
+
+        .tooltip:hover::after {
+            opacity: 1;
+            bottom: calc(100% + 8px);
+        }
+
+        /* ANIMACIONES */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -535,6 +751,20 @@
         .delay-4 { animation-delay: 0.6s; }
         .delay-5 { animation-delay: 0.75s; }
 
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+            to { opacity: 1; transform: rotate(0) scale(1); }
+        }
+
+        .rotate-in {
+            animation: rotateIn 0.8s ease forwards;
+        }
+
         @media (max-width: 1200px) {
             .slide { flex-direction: column; height: 88vh; }
             .image-panel { width: 100%; height: 35%; min-width: auto; padding: 10px; }
@@ -543,6 +773,7 @@
             h2 { font-size: 1.2rem; }
             .characters-grid { grid-template-columns: 1fr; }
             .two-columns { grid-template-columns: 1fr; }
+            .maya-clock { display: none; }
         }
 
         @media (max-width: 768px) {
@@ -557,8 +788,16 @@
 <base target="_blank">
 </head>
 <body>
+    <!-- PARTÍCULAS DE FONDO -->
+    <div class="particles-container" id="particlesContainer"></div>
     <div class="bg-pattern"></div>
     <div class="progress-bar" id="progressBar"></div>
+
+    <!-- RELOJ MAYA -->
+    <div class="maya-clock tooltip" id="mayaClock" data-tooltip="Hora actual - Clic para pausar/reanudar">
+        <div class="clock-time" id="clockTime">00:00:00</div>
+        <div class="clock-date" id="clockDate">--/--/----</div>
+    </div>
 
     <div class="presentation">
         <!-- DIAPOSITIVA 1: PORTADA -->
@@ -568,7 +807,7 @@
             <div class="corner-decor corner-bl"></div>
             <div class="corner-decor corner-br"></div>
             <div class="content-panel">
-                <div class="maya-icon animate-in">🌽</div>
+                <div class="maya-icon animate-in tooltip" data-tooltip="¡Haz clic para animar!" onclick="animateIcon(this)">🌽</div>
                 <h1 class="animate-in">POPOL VUH</h1>
                 <div class="title-decoration animate-in delay-1">
                     <span>◆ ◆ ◆</span>
@@ -602,19 +841,19 @@
                     El <strong>Popol Vuh</strong> es el texto sagrado más importante de la civilización maya. Redactado en el siglo XVI por nobles K'iche'.
                 </p>
                 <ul class="content-list animate-in delay-2">
-                    <li><strong>Significado:</strong> "Popol" = Consejo | "Vuh" = Libro</li>
-                    <li><strong>Escrito en:</strong> Lengua K'iche' (maya-quiché)</li>
-                    <li><strong>Fecha:</strong> Circa 1550 d.C.</li>
-                    <li><strong>Material:</strong> Papel de corteza de amate</li>
-                    <li><strong>Traductor:</strong> Fray Francisco Ximénez</li>
-                    <li><strong>Estructura:</strong> Creación, héroes, historia K'iche'</li>
+                    <li data-tooltip="Significado en lengua K'iche'"><strong>Significado:</strong> "Popol" = Consejo | "Vuh" = Libro</li>
+                    <li data-tooltip="Idioma original del texto"><strong>Escrito en:</strong> Lengua K'iche' (maya-quiché)</li>
+                    <li data-tooltip="Período de redacción"><strong>Fecha:</strong> Circa 1550 d.C.</li>
+                    <li data-tooltip="Material utilizado"><strong>Material:</strong> Papel de corteza de amate</li>
+                    <li data-tooltip="Traductor al español"><strong>Traductor:</strong> Fray Francisco Ximénez</li>
+                    <li data-tooltip="Estructura narrativa"><strong>Estructura:</strong> Creación, héroes, historia K'iche'</li>
                 </ul>
-                <div class="quote animate-in delay-3">
+                <div class="quote animate-in delay-3 tooltip" data-tooltip="Clic para copiar al portapapeles" onclick="copyQuote(this)">
                     Uno de los pocos textos precolombinos que sobrevivieron a la destrucción española.
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/arqueologiamexicana.mx/ef50013890fd2510df4464070609b51fa2586db4.png" alt="Cerámica Maya Clásica">
+                <img src="https://kimi-web-img.moonshot.cn/img/arqueologiamexicana.mx/ef50013890fd2510df4464070609b51fa2586db4.png" alt="Cerámica Maya Clásica" class="tooltip" data-tooltip="Clic para ampliar">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Cerámica policroma maya clásica</div>
             </div>
@@ -658,12 +897,12 @@
                         <td><strong>Hombres perfectos ✅</strong></td>
                     </tr>
                 </table>
-                <div class="quote animate-in delay-3">
+                <div class="quote animate-in delay-3 tooltip" data-tooltip="Clic para copiar" onclick="copyQuote(this)">
                     "Solo masa de maíz fueron sus cuerpos."
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/arqueologiamexicana.mx/afeeb36a21c6883a51574a37f47d1e441642999b.jpg" alt="Arte del Popol Vuh">
+                <img src="https://kimi-web-img.moonshot.cn/img/arqueologiamexicana.mx/afeeb36a21c6883a51574a37f47d1e441642999b.jpg" alt="Arte del Popol Vuh" class="tooltip" data-tooltip="Clic para ampliar">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Dioses de la creación maya</div>
             </div>
@@ -681,26 +920,26 @@
                     <span>◆ ◆ ◆</span>
                 </div>
                 <div class="characters-grid">
-                    <div class="character-card animate-in">
+                    <div class="character-card animate-in tooltip" data-tooltip="Dios creador supremo" onclick="highlightCard(this)">
                         <h4>🌟 Tepeu</h4>
                         <p>El Arquitecto. Dios creador supremo del universo.</p>
                     </div>
-                    <div class="character-card animate-in delay-1">
+                    <div class="character-card animate-in delay-1 tooltip" data-tooltip="Fuerza creadora" onclick="highlightCard(this)">
                         <h4>🐍 Gucumatz</h4>
                         <p>La Serpiente Emplumada, fuerza creadora.</p>
                     </div>
-                    <div class="character-card animate-in delay-2">
+                    <div class="character-card animate-in delay-2 tooltip" data-tooltip="Guardianes del saber" onclick="highlightCard(this)">
                         <h4>👴👵 Xpiyakok e Ixmukane</h4>
                         <p>Los Abuelos Sabios, guardianes del conocimiento.</p>
                     </div>
-                    <div class="character-card animate-in delay-3">
+                    <div class="character-card animate-in delay-3 tooltip" data-tooltip="Héroes del Popol Vuh" onclick="highlightCard(this)">
                         <h4>⚔️ Hunahpú e Ixbalanqué</h4>
                         <p>Los Héroes Gemelos, vencedores del inframundo.</p>
                     </div>
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/af2be74a0f3279460d2981d4bedc639b660b02fa.jpg" alt="Jarrón Maya Hunahpú e Ixbalanqué">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/af2be74a0f3279460d2981d4bedc639b660b02fa.jpg" alt="Jarrón Maya Hunahpú e Ixbalanqué" class="tooltip" data-tooltip="Clic para ampliar">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Jarrón maya — Hunahpú e Ixbalanqué</div>
             </div>
@@ -719,15 +958,15 @@
                 </div>
                 <h3 class="animate-in delay-1">Junajpú e Ixb'alamke</h3>
                 <ul class="content-list animate-in delay-2">
-                    <li><strong>Nacimiento:</strong> Ixkik' queda embarazada al hablar con la cabeza de Jun Junajpú</li>
-                    <li><strong>Infancia:</strong> Criados por su abuela Ixmukane</li>
-                    <li><strong>Hazañas:</strong> Derrotan a Vucub Caquix, Zipacná y Cabracán</li>
-                    <li><strong>Xibalbá:</strong> Sobreviven pruebas mortales</li>
-                    <li><strong>Destino:</strong> ¡Ascienden como el Sol y la Luna!</li>
+                    <li data-tooltip="Nacimiento milagroso"><strong>Nacimiento:</strong> Ixkik' queda embarazada al hablar con la cabeza de Jun Junajpú</li>
+                    <li data-tooltip="Crianza"><strong>Infancia:</strong> Criados por su abuela Ixmukane</li>
+                    <li data-tooltip="Hazañas"><strong>Hazañas:</strong> Derrotan a Vucub Caquix, Zipacná y Cabracán</li>
+                    <li data-tooltip="Descenso al inframundo"><strong>Xibalbá:</strong> Sobreviven pruebas mortales</li>
+                    <li data-tooltip="Ascensión divina"><strong>Destino:</strong> ¡Ascienden como el Sol y la Luna!</li>
                 </ul>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/3e9b9d50a1af221a19aec0f75711e06906aed9d9.jpg" alt="Hunahpú - Dios Maya">
+                <img src="https://kimi-web-img.moonshot.cn/img/upload.wikimedia.org/3e9b9d50a1af221a19aec0f75711e06906aed9d9.jpg" alt="Hunahpú - Dios Maya" class="tooltip" data-tooltip="Clic para ampliar">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Representación de Hunahpú</div>
             </div>
@@ -750,37 +989,37 @@
                 </p>
                 <h3 class="animate-in delay-2">Las Seis Casas</h3>
                 <div class="characters-grid animate-in delay-3">
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Sin luz ni guía" onclick="highlightCard(this)">
                         <h4>🏠 Oscuridad</h4>
                         <p>Sin luz ni guía.</p>
                     </div>
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Cuchillos giratorios" onclick="highlightCard(this)">
                         <h4>🔪 Cuchillos</h4>
                         <p>Hojas giratorias.</p>
                     </div>
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Viento gélido" onclick="highlightCard(this)">
                         <h4>❄️ Frío</h4>
                         <p>Viento gélido.</p>
                     </div>
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Fieras hambrientas" onclick="highlightCard(this)">
                         <h4>🐆 Jaguares</h4>
                         <p>Fieras hambrientas.</p>
                     </div>
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Llamas eternas" onclick="highlightCard(this)">
                         <h4>🔥 Fuego</h4>
                         <p>Llamas eternas.</p>
                     </div>
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Criaturas nocturnas" onclick="highlightCard(this)">
                         <h4>🦇 Murciélagos</h4>
                         <p>Criaturas nocturnas.</p>
                     </div>
                 </div>
-                <div class="quote animate-in delay-4" style="font-size: 0.82rem;">
+                <div class="quote animate-in delay-4 tooltip" data-tooltip="Clic para copiar" onclick="copyQuote(this)" style="font-size: 0.82rem;">
                     Xibalbá representa los obstáculos internos: miedo, orgullo, ignorancia.
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/2114141.fs1.hubspotusercontent-na1.net/88b811ffcfa36307139ff0bbe372da2d31210d65.jpg" alt="Mural Maya Xibalbá">
+                <img src="https://kimi-web-img.moonshot.cn/img/2114141.fs1.hubspotusercontent-na1.net/88b811ffcfa36307139ff0bbe372da2d31210d65.jpg" alt="Mural Maya Xibalbá" class="tooltip" data-tooltip="Clic para ampliar">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Mural maya — Escenas del inframundo</div>
             </div>
@@ -799,24 +1038,24 @@
                 </div>
                 <h3 class="animate-in delay-1">Los Cuatro Primeros Hombres</h3>
                 <div class="characters-grid animate-in delay-2">
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Jaguar de la Lluvia" onclick="highlightCard(this)">
                         <h4>🐆 Balam Quitzé</h4>
                         <p>Jaguar de la Lluvia</p>
                     </div>
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Jaguar de la Noche" onclick="highlightCard(this)">
                         <h4>🌙 Balam Ak'ab</h4>
                         <p>Jaguar de la Noche</p>
                     </div>
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="No se pierde" onclick="highlightCard(this)">
                         <h4>💎 Mahucutah</h4>
                         <p>No se pierde</p>
                     </div>
-                    <div class="character-card">
+                    <div class="character-card tooltip" data-tooltip="Jaguar de la Luna" onclick="highlightCard(this)">
                         <h4>⭐ Iqui Balam</h4>
                         <p>Jaguar de la Luna</p>
                     </div>
                 </div>
-                <div class="quote animate-in delay-3">
+                <div class="quote animate-in delay-3 tooltip" data-tooltip="Clic para copiar" onclick="copyQuote(this)">
                     "De maíz amarillo y blanco fue hecha su carne."
                 </div>
                 <p class="animate-in delay-4" style="margin-top: 8px; font-size: 0.8rem; color: var(--ocre); text-align: left; width: 100%;">
@@ -824,7 +1063,7 @@
                 </p>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/137degrees.com/96b12942f7402b3975dce941625e754cd6bf0da9.jpg" alt="Cerámica Maya Antigua">
+                <img src="https://kimi-web-img.moonshot.cn/img/137degrees.com/96b12942f7402b3975dce941625e754cd6bf0da9.jpg" alt="Cerámica Maya Antigua" class="tooltip" data-tooltip="Clic para ampliar">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Plato ceremonial maya</div>
             </div>
@@ -842,27 +1081,27 @@
                     <span>◆ ◆ ◆</span>
                 </div>
                 <div class="two-columns animate-in delay-2">
-                    <div class="column-section">
+                    <div class="column-section tooltip" data-tooltip="Origen del mundo" onclick="highlightSection(this)">
                         <h4>🌌 Creación</h4>
                         <p>Origen del mundo y del ser humano desde el silencio primordial.</p>
                     </div>
-                    <div class="column-section">
+                    <div class="column-section tooltip" data-tooltip="Astucia contra fuerza" onclick="highlightSection(this)">
                         <h4>⚔️ Heroísmo</h4>
                         <p>Lucha del bien contra el mal, astucia contra soberbia.</p>
                     </div>
-                    <div class="column-section">
+                    <div class="column-section tooltip" data-tooltip="Balance cósmico" onclick="highlightSection(this)">
                         <h4>🔄 Dualidad</h4>
                         <p>Vida/muerte, luz/oscuridad, cielo/inframundo.</p>
                     </div>
-                    <div class="column-section">
+                    <div class="column-section tooltip" data-tooltip="Sustento sagrado" onclick="highlightSection(this)">
                         <h4>🌽 Maíz</h4>
                         <p>Sustento sagrado y origen divino de la humanidad.</p>
                     </div>
-                    <div class="column-section">
+                    <div class="column-section tooltip" data-tooltip="Sabiduría ancestral" onclick="highlightSection(this)">
                         <h4>📚 Conocimiento</h4>
                         <p>Transmisión de la sabiduría ancestral.</p>
                     </div>
-                    <div class="column-section">
+                    <div class="column-section tooltip" data-tooltip="Ciclos cósmicos" onclick="highlightSection(this)">
                         <h4>🌅 Astronomía</h4>
                         <p>Ciclos del sol, la luna y Venus — tiempo cíclico.</p>
                     </div>
@@ -882,19 +1121,19 @@
                     <span>◆ ◆ ◆</span>
                 </div>
                 <ul class="content-list animate-in delay-1">
-                    <li><strong>Literatura:</strong> La obra más importante de la literatura indígena americana</li>
-                    <li><strong>Historia:</strong> Documenta la genealogía de los gobernantes K'iche'</li>
-                    <li><strong>Cosmovisión:</strong> Visión cíclica del tiempo (no lineal)</li>
-                    <li><strong>Arqueología:</strong> Escenas en cerámica y murales mayas</li>
-                    <li><strong>Cultura viva:</strong> Referente para los pueblos mayas contemporáneos</li>
-                    <li><strong>Arte:</strong> Ha inspirado literatura, pintura, música y cine</li>
+                    <li data-tooltip="Valor literario"><strong>Literatura:</strong> La obra más importante de la literatura indígena americana</li>
+                    <li data-tooltip="Valor histórico"><strong>Historia:</strong> Documenta la genealogía de los gobernantes K'iche'</li>
+                    <li data-tooltip="Visión del tiempo"><strong>Cosmovisión:</strong> Visión cíclica del tiempo (no lineal)</li>
+                    <li data-tooltip="Evidencia arqueológica"><strong>Arqueología:</strong> Escenas en cerámica y murales mayas</li>
+                    <li data-tooltip="Vigencia actual"><strong>Cultura viva:</strong> Referente para los pueblos mayas contemporáneos</li>
+                    <li data-tooltip="Inspiración artística"><strong>Arte:</strong> Ha inspirado literatura, pintura, música y cine</li>
                 </ul>
-                <div class="quote animate-in delay-2">
+                <div class="quote animate-in delay-2 tooltip" data-tooltip="Clic para copiar" onclick="copyQuote(this)">
                     "Todo lo que existe, todo lo que fue creado, todo lo que fue formado..."
                 </div>
             </div>
             <div class="image-panel">
-                <img src="https://kimi-web-img.moonshot.cn/img/cdnx.jumpseller.com/a6c02120971bfeb65837a32bdde126c8f29db68c.jpg" alt="Portada Popol Vuh">
+                <img src="https://kimi-web-img.moonshot.cn/img/cdnx.jumpseller.com/a6c02120971bfeb65837a32bdde126c8f29db68c.jpg" alt="Portada Popol Vuh" class="tooltip" data-tooltip="Clic para ampliar">
                 <div class="image-overlay"></div>
                 <div class="image-caption">Edición moderna del Popol Vuh</div>
             </div>
@@ -907,7 +1146,7 @@
             <div class="corner-decor corner-bl"></div>
             <div class="corner-decor corner-br"></div>
             <div class="content-panel">
-                <div class="maya-icon animate-in">🌽</div>
+                <div class="maya-icon animate-in tooltip" data-tooltip="¡Haz clic para animar!" onclick="animateIcon(this)">🌽</div>
                 <h1 class="animate-in delay-1" style="font-size: 2.2rem;">Gracias</h1>
                 <div class="title-decoration animate-in delay-2">
                     <span>◆ ◆ ◆</span>
@@ -925,8 +1164,8 @@
     </div>
 
     <div class="controls">
-        <button class="btn" id="prevBtn" onclick="changeSlide(-1)">◀ Anterior</button>
-        <button class="btn" id="nextBtn" onclick="changeSlide(1)">Siguiente ▶</button>
+        <button class="btn tooltip" id="prevBtn" data-tooltip="Flecha izquierda" onclick="changeSlide(-1)">◀ Anterior</button>
+        <button class="btn tooltip" id="nextBtn" data-tooltip="Flecha derecha / Espacio" onclick="changeSlide(1)">Siguiente ▶</button>
     </div>
 
     <div class="slide-counter" id="slideCounter">1 / 10</div>
@@ -934,7 +1173,87 @@
     <script>
         let currentSlide = 0;
         const totalSlides = 10;
+        let clockInterval;
+        let clockRunning = true;
 
+        // CREAR PARTÍCULAS DE FONDO
+        function createParticles() {
+            const container = document.getElementById('particlesContainer');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (6 + Math.random() * 6) + 's';
+                particle.style.width = (2 + Math.random() * 4) + 'px';
+                particle.style.height = particle.style.width;
+                container.appendChild(particle);
+            }
+        }
+
+        // RELOJ MAYA
+        function updateClock() {
+            if (!clockRunning) return;
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('es-ES', { hour12: false });
+            const dateStr = now.toLocaleDateString('es-ES');
+            document.getElementById('clockTime').textContent = timeStr;
+            document.getElementById('clockDate').textContent = dateStr;
+        }
+
+        function toggleClock() {
+            clockRunning = !clockRunning;
+            const clock = document.getElementById('mayaClock');
+            clock.style.opacity = clockRunning ? '1' : '0.5';
+        }
+
+        // ANIMAR ICONO DE MAÍZ
+        function animateIcon(icon) {
+            icon.style.transform = 'rotate(360deg) scale(1.5)';
+            icon.style.filter = 'drop-shadow(0 0 20px var(--dorado))';
+            setTimeout(() => {
+                icon.style.transform = '';
+                icon.style.filter = '';
+            }, 1000);
+        }
+
+        // HIGHLIGHT CARD
+        function highlightCard(card) {
+            card.style.background = 'rgba(212, 168, 67, 0.25)';
+            card.style.borderColor = 'var(--dorado)';
+            card.style.transform = 'translateY(-6px) scale(1.05)';
+            setTimeout(() => {
+                card.style.background = '';
+                card.style.borderColor = '';
+                card.style.transform = '';
+            }, 1500);
+        }
+
+        // HIGHLIGHT SECTION
+        function highlightSection(section) {
+            section.style.background = 'rgba(212, 168, 67, 0.15)';
+            section.style.transform = 'translateX(10px)';
+            setTimeout(() => {
+                section.style.background = '';
+                section.style.transform = '';
+            }, 1500);
+        }
+
+        // COPIAR CITA
+        function copyQuote(quote) {
+            const text = quote.textContent.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                const original = quote.textContent;
+                quote.textContent = '✓ ¡Copiado!';
+                quote.style.color = 'var(--dorado)';
+                setTimeout(() => {
+                    quote.textContent = original;
+                    quote.style.color = '';
+                }, 1500);
+            });
+        }
+
+        // NAVEGACIÓN
         function updateSlide() {
             for (let i = 0; i < totalSlides; i++) {
                 const slide = document.getElementById('slide-' + i);
@@ -961,6 +1280,7 @@
             }
         }
 
+        // EVENT LISTENERS
         document.addEventListener('keydown', function(e) {
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
@@ -968,9 +1288,22 @@
             } else if (e.key === 'ArrowLeft') {
                 e.preventDefault();
                 changeSlide(-1);
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                currentSlide = 0;
+                updateSlide();
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                currentSlide = totalSlides - 1;
+                updateSlide();
             }
         });
 
+        // INICIALIZAR
+        createParticles();
+        clockInterval = setInterval(updateClock, 1000);
+        updateClock();
+        document.getElementById('mayaClock').addEventListener('click', toggleClock);
         updateSlide();
     </script>
 </body>
